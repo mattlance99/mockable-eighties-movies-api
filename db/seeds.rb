@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+20.times do
+Movie.create(title: Faker::DcComics.title, genre: Faker::Book.genre, release_year: (1980..1989).to_a.sample)
+
+end

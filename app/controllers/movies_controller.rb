@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
 
+  before_action :set_movie, only: [:show, :update, :destroy]
+
   def new
     @movie = Movie.new
   end
@@ -9,16 +11,36 @@ class MoviesController < ApplicationController
   end
 
   def show
-    render json: Movie.find_by(id: params['id'])
+    render json: @movie
   end
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.save
-    redirect_to movie_path(@movie)
+    if @movie.save
+      render json: @movie
+    else
+      render json: { message: surfboard.errors }, status: 400
+    end
+  end
+
+  def update
+    if @movie.update(movie_params)
+      render json: @movie
+    else
+      render json: { message: surfboard.errors }, status: 400
+    end
+  end
+
+  def destroy
+    @movie.destroy
   end
 
 private
+
+
+  def set_movie
+    @movie = Movie.find_by(id: params[:id])
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :release_year, :genre)

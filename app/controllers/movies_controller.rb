@@ -19,7 +19,6 @@ class MoviesController < ApplicationController
     if @movie.save
       render json: @movie
     else
-      binding.pry
       render json: { message: @movie.errors }, status: 400
     end
   end

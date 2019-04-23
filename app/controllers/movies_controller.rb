@@ -15,11 +15,11 @@ class MoviesController < ApplicationController
   end
 
   def create
-    binding.pry
     @movie = Movie.new(movie_params)
     if @movie.save
       render json: @movie
     else
+      binding.pry
       render json: { message: @movie.errors }, status: 400
     end
   end
@@ -44,7 +44,7 @@ private
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :release_year, :genre, :image_url)
+    params.require(:movie).permit(:title, :genre, :release_year, :image_url)
   end
 
 end

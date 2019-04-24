@@ -33,6 +33,7 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie.destroy
+    render json: @movie.id
   end
 
 private

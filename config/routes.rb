@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :movies, only: [:show, :index, :create, :new]
+  resources :movies, only: [:show, :index, :create, :new, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
